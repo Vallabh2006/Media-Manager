@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | AI for Everyone Resource Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Chart.js for Admin Dashboard analytics -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Lucide Icons for premium visual styles -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <!-- Toast Notifications Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <div class="app-container">
+
+        <!-- ================= DASHBOARD LAYOUTS ================= -->
+        <main class="view-section" id="view-dashboard" style="background-color: var(--background);">
+            <div class="dashboard-wrapper">
+                
+                <!-- Dashboard Sidebar -->
+                <aside class="sidebar">
+                    <div class="sidebar-profile">
+                        <div class="avatar" id="sidebarAvatar">A</div>
+                        <div class="profile-info">
+                            <div class="profile-name" id="sidebarProfileName">Faculty User</div>
+                            <div class="profile-role" id="sidebarProfileRole">Faculty</div>
+                        </div>
+                    </div>
+
+                    <!-- Role specific menus will be rendered dynamically in app.js -->
+                    <ul class="sidebar-menu" id="sidebarMenu">
+                        <!-- Dynamic items -->
+                    </ul>
+
+                    <a onclick="logout()" class="menu-item logout">
+                        <i data-lucide="log-out"></i>
+                        <span>Logout</span>
+                    </a>
+                </aside>
+
+                <!-- Dashboard Content Panels -->
+                <div class="dashboard-content-area">
+                    
+                    <!-- Dynamic Title Header -->
+                    <div class="dashboard-header">
+                        <div class="dashboard-title-group">
+                            <h2 id="dashboardTitle">Dashboard Panel</h2>
+                            <p id="dashboardSubtitle">Course overview and system stats</p>
+                        </div>
+                    </div>
+
+                    <!-- PANEL: STUDENT HOME -->
+                    <div class="panel-section" id="panel-student-home">
+                        <div class="cards-grid">
+                            <div class="analytic-card">
+                                <div>
+                                    <div class="card-info-title">Total Subjects</div>
+                                    <div class="card-info-value" id="card-student-subjects">1</div>
+                                </div>
+                                <div class="card-icon-box blue">
+                                    <i data-lucide="book-open"></i>
+                                </div>
+                            </div>
+                            <div class="analytic-card">
+                                <div>
+                                    <div class="card-info-title">Total Units</div>
+                                    <div class="card-info-value" id="card-student-units">6</div>
+                                </div>
+                                <div class="card-icon-box green">
+                                    <i data-lucide="layers"></i>
+                                </div>
+                            </div>
+                            <div class="analytic-card">
+                                <div>
+                                    <div class="card-info-title">Available Resources</div>
+                                    <div class="card-info-value" id="card-student-resources">12</div>
+                                </div>
+                                <div class="card-icon-box blue">
+                                    <i data-lucide="file-text"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Welcome Banner / Highlight info -->
+                        <div class="split-card" style="margin-bottom: 2rem;">
+                            <div class="split-card-title"><i data-lucide="sparkles" style="color: var(--primary);"></i> AI Resource Gateway</div>
+                            <p style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">
+                                Welcome to CVM University's resource hub for <b>Artificial Intelligence for Everyone</b>. 
+                                Navigate to the <b>Resources</b> tab in the sidebar to download syllabus, study notes, lecture slides (PPT), and lab exercise solutions.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- PANEL: STUDENT RESOURCES VIEW -->
+                    <div class="panel-section" id="panel-student-resources">
+                        <div class="search-filter-row">
+                            <div class="search-wrapper">
+                                <div class="input-icon-wrapper">
+                                    <i data-lucide="search"></i>
+                                    <input type="text" id="resourceSearch" class="form-control" placeholder="Search by resource title, topic, or file type..." onkeyup="filterStudentResources()">
+                                </div>
+                            </div>
+                            <div class="filter-wrapper">
+                                <select id="filterUnit" class="filter-select" onchange="filterStudentResources()">
+                                    <option value="">All Units</option>
+                                    <!-- Dynamic Options from state.resources -->
+                                </select>
+                                <select id="filterTopic" class="filter-select" onchange="filterStudentResources()">
+                                    <option value="">All Topics</option>
+                                    <!-- Dynamic Options -->
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="resources-grid" id="studentResourcesGrid">
+                            <!-- Dynamic Cards rendered via app.js -->
+                        </div>
+                    </div>
+
+                    <!-- PANEL: FACULTY HOME -->
+                    <div class="panel-section" id="panel-faculty-home">
+                        <div class="cards-grid">
+                            <div class="analytic-card">
+                                <div>
+                                    <div class="card-info-title">Uploaded Resources</div>
+                                    <div class="card-info-value" id="card-faculty-resources">0</div>
+                                </div>
+                                <div class="card-icon-box blue">
+                                    <i data-lucide="upload-cloud"></i>
+                                </div>
+                            </div>
+                            <div class="analytic-card">
+                                <div>
+                                    <div class="card-info-title">Total Topics</div>
+                                    <div class="card-info-value" id="card-faculty-topics">0</div>
+                                </div>
+                                <div class="card-icon-box green">
+                                    <i data-lucide="hash"></i>
+                                </div>
+                            </div>
+                            <div class="analytic-card">
+                                <div>
+                                    <div class="card-info-title">Total Units</div>
+                                    <div class="card-info-value" id="card-faculty-units">0</div>
+                                </div>
+                                <div class="card-icon-box amber">
+                                    <i data-lucide="layers"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="split-card" style="margin-bottom: 2rem;">
+                            <div class="split-card-title"><i data-lucide="info" style="color: var(--primary);"></i> Faculty Content Management Guidelines</div>
+                            <p style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">
+                                As an authorized faculty member, you can manage the course syllabus and structures. Go to <b>Manage Resources</b> in the sidebar to upload files, add topics, edit unit listings, or delete obsolete materials.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- PANEL: FACULTY/ADMIN MANAGE RESOURCES -->
+                    <div class="panel-section" id="panel-manage-resources">
+                        <div style="display: flex; justify-content: flex-end; margin-bottom: 1.5rem; gap: 0.75rem;">
+                            <button class="btn btn-primary" onclick="openAddNodeModal('subject', '')">
+                                <i data-lucide="plus-circle"></i> Add Subject
+                            </button>
+                        </div>
+
+                        <div class="tree-container">
+                            <div id="resourcesTreeRoot">
+                                <!-- Dynamic tree nodes rendered via app.js -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PANEL: ADMIN HOME -->
+                    <div class="panel-section" id="panel-admin-home">
+                        <div class="cards-grid">
+                            <div class="analytic-card">
+                                <div>
+                                    <div class="card-info-title">Total Students</div>
+                                    <div class="card-info-value" id="card-admin-students">0</div>
+                                </div>
+                                <div class="card-icon-box blue">
+                                    <i data-lucide="graduation-cap"></i>
+                                </div>
+                            </div>
+                            <div class="analytic-card">
+                                <div>
+                                    <div class="card-info-title">Total Faculty</div>
+                                    <div class="card-info-value" id="card-admin-faculty">0</div>
+                                </div>
+                                <div class="card-icon-box green">
+                                    <i data-lucide="users"></i>
+                                </div>
+                            </div>
+                            <div class="analytic-card">
+                                <div>
+                                    <div class="card-info-title">Pending Approvals</div>
+                                    <div class="card-info-value" id="card-admin-pending">0</div>
+                                </div>
+                                <div class="card-icon-box amber">
+                                    <i data-lucide="user-check"></i>
+                                </div>
+                            </div>
+                            <div class="analytic-card">
+                                <div>
+                                    <div class="card-info-title">Total Resources</div>
+                                    <div class="card-info-value" id="card-admin-resources">0</div>
+                                </div>
+                                <div class="card-icon-box blue">
+                                    <i data-lucide="folder-open"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Split layout: Charts and short application summaries -->
+                        <div class="dashboard-split-grid">
+                            <div class="split-card">
+                                <div class="split-card-header">
+                                    <div class="split-card-title"><i data-lucide="bar-chart-3"></i> Resource Statistics</div>
+                                </div>
+                                <div style="position: relative; height: 300px; width: 100%;">
+                                    <canvas id="adminChartCanvas"></canvas>
+                                </div>
+                            </div>
+
+                            <div class="split-card">
+                                <div class="split-card-header">
+                                    <div class="split-card-title"><i data-lucide="clock"></i> Pending Reviews</div>
+                                    <button class="btn btn-outline" style="font-size: 0.75rem; padding: 0.25rem 0.5rem;" onclick="setPanel('faculty-applications')">View All</button>
+                                </div>
+                                <div class="table-container">
+                                    <table class="custom-table" id="adminPendingQuickTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Faculty</th>
+                                                <th>College</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- Dynamic items -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PANEL: ADMIN FACULTY APPLICATIONS -->
+                    <div class="panel-section" id="panel-faculty-applications">
+                        <div class="split-card">
+                            <div class="split-card-header">
+                                <div class="split-card-title"><i data-lucide="user-check"></i> Faculty Registration Approval Queue</div>
+                            </div>
+                            <div class="table-container">
+                                <table class="custom-table" id="adminApplicationsTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>College</th>
+                                            <th>Reg Date</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Dynamic items -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PANEL: ADMIN FACULTY LIST -->
+                    <div class="panel-section" id="panel-faculty-list">
+                        <div class="search-filter-row">
+                            <div class="search-wrapper">
+                                <div class="input-icon-wrapper">
+                                    <i data-lucide="search"></i>
+                                    <input type="text" id="facultySearch" class="form-control" placeholder="Search by faculty name or email..." onkeyup="filterFacultyList()">
+                                </div>
+                            </div>
+                            <div class="filter-wrapper">
+                                <select id="facultyFilterCollege" class="filter-select" onchange="filterFacultyList()">
+                                    <option value="">All Colleges</option>
+                                    <option value="GCET">GCET</option>
+                                    <option value="MBIT">MBIT</option>
+                                    <option value="ADIT">ADIT</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="split-card">
+                            <div class="table-container">
+                                <table class="custom-table" id="adminFacultyTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Faculty Name</th>
+                                            <th>College</th>
+                                            <th>Email</th>
+                                            <th>Join Date</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Dynamic items -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PANEL: ADMIN LOGS -->
+                    <div class="panel-section" id="panel-logs">
+                        <div class="search-filter-row">
+                            <div class="search-wrapper">
+                                <div class="input-icon-wrapper">
+                                    <i data-lucide="search"></i>
+                                    <input type="text" id="logsSearch" class="form-control" placeholder="Search log actions, users, messages..." onkeyup="filterLogs()">
+                                </div>
+                            </div>
+                            <div class="filter-wrapper">
+                                <select id="logsFilterType" class="filter-select" onchange="filterLogs()">
+                                    <option value="">All Types</option>
+                                    <option value="reg">Registrations</option>
+                                    <option value="login">Login Success</option>
+                                    <option value="fail">Login Failure</option>
+                                    <option value="approval">Approvals/Rejections</option>
+                                    <option value="upload">Uploads</option>
+                                    <option value="delete">Deletions</option>
+                                    <option value="structure">Course Modifications</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="split-card">
+                            <div class="logs-list" id="adminLogsContainer">
+                                <!-- Dynamic logs items -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <!-- ================= MODALS & POPUPS ================= -->
+    
+    <!-- Modal: Add Tree Node (Subject, Unit, Topic) -->
+    <div class="modal-overlay" id="addNodeModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 class="modal-title" id="addNodeModalTitle">Add Subject</h3>
+                <button class="modal-close-btn" onclick="closeModal('addNodeModal')">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <form id="addNodeForm" onsubmit="handleAddNodeSubmit(event)">
+                <input type="hidden" id="addNodeParentId">
+                <input type="hidden" id="addNodeType">
+                
+                <div class="form-group">
+                    <label class="form-label" id="addNodeLabel" for="addNodeName">Subject Name</label>
+                    <input type="text" id="addNodeName" class="form-control" required placeholder="Enter name...">
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline" onclick="closeModal('addNodeModal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Upload Resource -->
+    <div class="modal-overlay" id="uploadModal">
+        <div class="modal-card" style="max-width: 500px;">
+            <div class="modal-header">
+                <h3 class="modal-title">Upload Resource</h3>
+                <button class="modal-close-btn" onclick="closeModal('uploadModal')">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            
+            <!-- File Drag and Drop Zone -->
+            <div class="drag-drop-area" id="dragDropArea">
+                <i data-lucide="file-up" class="drag-drop-icon" style="width: 42px; height: 42px;"></i>
+                <div class="drag-drop-text">Drag & drop files here or click to browse</div>
+                <div class="drag-drop-subtext">PDF, PPT, DOCX, or TXT (Max 15MB)</div>
+                <input type="file" id="fileInput" class="file-input-hidden" onchange="handleFileSelected(event)">
+            </div>
+
+            <!-- Upload File Details Form -->
+            <form id="uploadForm" onsubmit="handleResourceUploadSubmit(event)">
+                <input type="hidden" id="uploadTopicId">
+                
+                <div class="form-group">
+                    <label class="form-label">Resource Type</label>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <label style="flex: 1; border: 1px solid var(--border); border-radius: 8px; padding: 0.5rem; text-align: center; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.25rem;">
+                            <input type="radio" name="resType" value="pdf" checked onchange="toggleUploadLinkInput(false)">
+                            <span>PDF</span>
+                        </label>
+                        <label style="flex: 1; border: 1px solid var(--border); border-radius: 8px; padding: 0.5rem; text-align: center; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.25rem;">
+                            <input type="radio" name="resType" value="ppt" onchange="toggleUploadLinkInput(false)">
+                            <span>PPT</span>
+                        </label>
+                        <label style="flex: 1; border: 1px solid var(--border); border-radius: 8px; padding: 0.5rem; text-align: center; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.25rem;">
+                            <input type="radio" name="resType" value="notes" onchange="toggleUploadLinkInput(false)">
+                            <span>Notes</span>
+                        </label>
+                        <label style="flex: 1; border: 1px solid var(--border); border-radius: 8px; padding: 0.5rem; text-align: center; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.25rem;">
+                            <input type="radio" name="resType" value="link" onchange="toggleUploadLinkInput(true)">
+                            <span>Link</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="resTitle">Resource Title</label>
+                    <input type="text" id="resTitle" class="form-control" required placeholder="Enter resource name/description">
+                </div>
+
+                <!-- Toggle link option input -->
+                <div class="form-group" id="resLinkGroup" style="display: none;">
+                    <label class="form-label" for="resLink">External URL</label>
+                    <div class="input-icon-wrapper">
+                        <i data-lucide="link-2"></i>
+                        <input type="url" id="resLink" class="form-control" placeholder="https://example.com/notes">
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline" onclick="closeModal('uploadModal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="uploadSubmitBtn">Upload File</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Core App JS -->
+    <script src="app.js"></script>
+</body>
+</html>

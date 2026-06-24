@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI for Everyone Resource Portal | CVM University</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Chart.js for Admin Dashboard analytics -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Lucide Icons for premium visual styles -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <!-- Toast Notifications Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <div class="app-container">
+        
+        <!-- Header (Visible on Landing, Login, Signup, Pending Approval) -->
+        <header class="main-header" id="mainHeader">
+            <div class="logos-container">
+                <!-- CVM University Logo -->
+                <div class="logo-item" title="CVM University">
+                    <img src="logo_cvmu.png" alt="CVM University Logo">
+                </div>
+                <div class="logo-divider"></div>
+                <!-- GCET Logo -->
+                <div class="logo-item" title="G H Patel College of Engineering & Technology">
+                    <img src="logo_gcet.png" alt="GCET Logo">
+                </div>
+                <!-- MBIT Logo -->
+                <div class="logo-item" title="Madhuben & Bhanubhai Patel Institute of Technology">
+                    <img src="logo_mbit.png" alt="MBIT Logo">
+                </div>
+                <!-- ADIT Logo -->
+                <div class="logo-item" title="A D Patel Institute of Technology">
+                    <img src="logo_adit.png" alt="ADIT Logo">
+                </div>
+            </div>
+            
+            <nav class="main-nav" id="mainNav">
+                <a onclick="showView('landing')" class="nav-link active">Home</a>
+                <a onclick="showView('syllabus')" class="nav-link">Syllabus</a>
+                <a onclick="showView('features')" class="nav-link">Features</a>
+                <a onclick="showView('contact')" class="nav-link">Contact</a>
+            </nav>
+
+            <div class="header-buttons" id="headerButtons">
+                <button onclick="showView('login')" class="btn btn-outline">Login</button>
+                <button onclick="showView('signup')" class="btn btn-primary">Sign Up</button>
+            </div>
+        </header>
+
+        <!-- ================= HOME (LANDING) VIEW ================= -->
+        <main class="view-section active" id="view-landing">
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <span class="hero-badge">CVM University Subject Resource Portal</span>
+                <h1 class="hero-title">Artificial Intelligence for Everyone</h1>
+                <p class="hero-subtitle">A centralized platform for accessing course syllabus, unit-wise notes, presentations, lab practicals, and essential AI learning resources.</p>
+            </section>
+
+            <!-- Quick Access Grid -->
+            <section class="section" style="padding-top: 0; padding-bottom: 5rem;">
+                <div class="syllabus-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+                    <div class="syllabus-card" onclick="showView('syllabus')" style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2.5rem 1.5rem; border-color: var(--border);">
+                        <div class="syllabus-icon" style="margin-bottom: 1.25rem;"><i data-lucide="book-open"></i></div>
+                        <h3 class="syllabus-title" style="font-size: 1.25rem; margin-bottom: 0.5rem;">Explore Syllabus</h3>
+                        <p class="syllabus-desc" style="font-size: 0.9rem; line-height: 1.5;">View the 6 comprehensive units of Artificial Intelligence.</p>
+                    </div>
+                    <div class="syllabus-card" onclick="showView('features')" style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2.5rem 1.5rem; border-color: var(--border);">
+                        <div class="syllabus-icon" style="margin-bottom: 1.25rem;"><i data-lucide="sparkles"></i></div>
+                        <h3 class="syllabus-title" style="font-size: 1.25rem; margin-bottom: 0.5rem;">Key Portal Features</h3>
+                        <p class="syllabus-desc" style="font-size: 0.9rem; line-height: 1.5;">Check out core platform functionalities and features.</p>
+                    </div>
+                    <div class="syllabus-card" onclick="showView('contact')" style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2.5rem 1.5rem; border-color: var(--border);">
+                        <div class="syllabus-icon" style="margin-bottom: 1.25rem;"><i data-lucide="mail"></i></div>
+                        <h3 class="syllabus-title" style="font-size: 1.25rem; margin-bottom: 0.5rem;">Get in Touch</h3>
+                        <p class="syllabus-desc" style="font-size: 0.9rem; line-height: 1.5;">Contact support or reach out for academic inquiries.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Global Footer -->
+        <footer class="main-footer" id="mainFooter">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3><i data-lucide="shield"></i> CVM University</h3>
+                    <p>Centralized AI learning resource gateway for GCET, MBIT, and ADIT engineering institutes.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a onclick="showView('syllabus')" style="cursor: pointer;">Syllabus</a></li>
+                        <li><a onclick="showView('features')" style="cursor: pointer;">Features</a></li>
+                        <li><a onclick="showView('contact')" style="cursor: pointer;">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="mailto:support@cvmu.edu.in">support@cvmu.edu.in</a></li>
+                        <li><a href="#">Security policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CVM University. All rights reserved.</p>
+                <p>Designed for Artificial Intelligence For Everyone Course</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Core App JS -->
+    <script src="app.js"></script>
+</body>
+</html>

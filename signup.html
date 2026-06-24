@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | AI for Everyone Resource Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <!-- Toast Notifications Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <div class="app-container">
+        
+        <!-- Header -->
+        <header class="main-header" id="mainHeader">
+            <div class="logos-container">
+                <div class="logo-item" title="CVM University">
+                    <img src="logo_cvmu.png" alt="CVM University Logo">
+                </div>
+                <div class="logo-divider"></div>
+                <div class="logo-item" title="G H Patel College of Engineering & Technology">
+                    <img src="logo_gcet.png" alt="GCET Logo">
+                </div>
+                <div class="logo-item" title="Madhuben & Bhanubhai Patel Institute of Technology">
+                    <img src="logo_mbit.png" alt="MBIT Logo">
+                </div>
+                <div class="logo-item" title="A D Patel Institute of Technology">
+                    <img src="logo_adit.png" alt="ADIT Logo">
+                </div>
+            </div>
+            
+            <nav class="main-nav" id="mainNav">
+                <a onclick="showView('landing')" class="nav-link">Home</a>
+                <a onclick="showView('syllabus')" class="nav-link">Syllabus</a>
+                <a onclick="showView('features')" class="nav-link">Features</a>
+                <a onclick="showView('contact')" class="nav-link">Contact</a>
+            </nav>
+
+            <div class="header-buttons" id="headerButtons">
+                <button onclick="showView('login')" class="btn btn-outline">Login</button>
+                <button onclick="showView('signup')" class="btn btn-primary">Sign Up</button>
+            </div>
+        </header>
+
+        <!-- ================= SIGNUP VIEW ================= -->
+        <main class="view-section" id="view-signup">
+            <div class="auth-wrapper">
+                <div class="auth-card">
+                    <div class="auth-logo">
+                        <i data-lucide="user-plus" style="width: 48px; height: 48px; color: var(--primary);"></i>
+                        <h2 class="auth-title">Create Account</h2>
+                        <p class="auth-subtitle">Register for university-wide AI portal access</p>
+                    </div>
+
+                    <form id="signupForm" onsubmit="event.preventDefault();">
+                        <div class="form-signup-single-step">
+                            <!-- Role Selection -->
+                            <h3 style="font-size: 1rem; font-weight: 600; margin-bottom: 1rem; color: var(--text-dark);">Choose Your Role</h3>
+                            <div class="role-grid-2" style="margin-bottom: 1.25rem;">
+                                <button type="button" class="role-btn active" id="signup-role-student" onclick="setSignupRole('student')">
+                                    <i data-lucide="graduation-cap"></i>
+                                    <span>Student</span>
+                                </button>
+                                <button type="button" class="role-btn" id="signup-role-faculty" onclick="setSignupRole('faculty')">
+                                    <i data-lucide="users"></i>
+                                    <span>Faculty Member</span>
+                                </button>
+                            </div>
+
+                            <!-- College Affiliation -->
+                            <div class="form-group">
+                                <label class="form-label" for="signupCollege">College affiliation</label>
+                                <select id="signupCollege" class="form-control" style="background-image: none;" required>
+                                    <option value="" disabled selected>Select Your College</option>
+                                    <option value="GCET">GCET (G H Patel College of Eng. & Tech.)</option>
+                                    <option value="MBIT">MBIT (Madhuben & Bhanubhai Patel Inst. of Tech.)</option>
+                                    <option value="ADIT">ADIT (A D Patel Institute of Technology)</option>
+                                </select>
+                                <div class="validation-msg" id="val-signup-college"></div>
+                            </div>
+
+                            <!-- Email with Send OTP Button -->
+                            <div class="form-group">
+                                <label class="form-label" for="signupEmail">College Email Address</label>
+                                <div class="email-otp-row" style="display: flex; gap: 0.5rem; align-items: stretch;">
+                                    <div class="input-icon-wrapper" style="flex: 1; margin-bottom: 0;">
+                                        <i data-lucide="mail"></i>
+                                        <input type="email" id="signupEmail" class="form-control" placeholder="e.g. name@gcet.ac.in" required>
+                                    </div>
+                                    <button type="button" id="btnSendOTP" onclick="sendSignupOTP()" class="btn btn-secondary" style="white-space: nowrap; padding: 0.5rem 1rem; font-size: 0.9rem; display: none;">Send OTP</button>
+                                </div>
+                                <div style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.35rem; line-height: 1.4;">
+                                    Students: <b>@gcet.ac.in</b>, <b>@mbit.edu.in</b>, or <b>@adit.ac.in</b> <br>
+                                    Faculty: <b>@cvmu.edu.in</b>
+                                </div>
+                                <div class="validation-msg" id="val-signup-email"></div>
+                            </div>
+
+                            <!-- OTP Verification Code (Hidden initially) -->
+                            <div class="form-group" id="signupOTPContainer" style="display: none;">
+                                <label class="form-label" for="signupOTP">Enter OTP Code</label>
+                                <div class="input-icon-wrapper">
+                                    <i data-lucide="shield-check"></i>
+                                    <input type="text" id="signupOTP" class="form-control" placeholder="Enter 6-digit OTP code" required>
+                                </div>
+                                <div class="validation-msg" id="val-signup-otp"></div>
+                            </div>
+
+                            <!-- Username -->
+                            <div class="form-group">
+                                <label class="form-label" for="signupUsername">Username</label>
+                                <div class="input-icon-wrapper">
+                                    <i data-lucide="user"></i>
+                                    <input type="text" id="signupUsername" class="form-control" placeholder="Choose a username" required>
+                                </div>
+                                <div class="validation-msg" id="val-signup-username"></div>
+                            </div>
+
+                            <!-- Password -->
+                            <div class="form-group">
+                                <label class="form-label" for="signupPassword">Password</label>
+                                <div class="input-icon-wrapper">
+                                    <i data-lucide="key"></i>
+                                    <input type="password" id="signupPassword" class="form-control" placeholder="••••••••" required>
+                                </div>
+                                <div class="validation-msg" id="val-signup-password"></div>
+                            </div>
+
+                            <!-- Confirm Password -->
+                            <div class="form-group">
+                                <label class="form-label" for="signupConfirmPassword">Confirm Password</label>
+                                <div class="input-icon-wrapper">
+                                    <i data-lucide="key"></i>
+                                    <input type="password" id="signupConfirmPassword" class="form-control" placeholder="••••••••" required>
+                                </div>
+                                <div class="validation-msg" id="val-signup-confirm"></div>
+                            </div>
+
+                            <!-- Finish & Register -->
+                            <button type="button" onclick="handleSignupSubmit()" class="btn btn-primary" style="width: 100%; margin-top: 1.5rem; padding: 0.85rem; font-size: 1rem; font-weight: 600;">
+                                Finish & Create Account <i data-lucide="check"></i>
+                            </button>
+                        </div>
+                    </form>
+
+                    <div style="margin-top: 1.5rem; text-align: center; display: flex; flex-direction: column; gap: 0.75rem;">
+                        <span style="font-size: 0.875rem; color: var(--text-secondary);">
+                            Already have an account? <a onclick="showView('login')" style="color: var(--primary); font-weight: 600; cursor: pointer;">Login</a>
+                        </span>
+                        <a onclick="showView('landing')" style="font-size: 0.85rem; color: var(--text-secondary); display: flex; align-items: center; justify-content: center; gap: 0.25rem; cursor: pointer;">
+                            <i data-lucide="arrow-left" style="width: 14px; height: 14px;"></i> Back to Home
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Global Footer -->
+        <footer class="main-footer" id="mainFooter">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3><i data-lucide="shield"></i> CVM University</h3>
+                    <p>Centralized AI learning resource gateway for GCET, MBIT, and ADIT engineering institutes.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a onclick="showView('syllabus')" style="cursor: pointer;">Syllabus</a></li>
+                        <li><a onclick="showView('features')" style="cursor: pointer;">Features</a></li>
+                        <li><a onclick="showView('contact')" style="cursor: pointer;">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="mailto:support@cvmu.edu.in">support@cvmu.edu.in</a></li>
+                        <li><a href="#">Security policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CVM University. All rights reserved.</p>
+                <p>Designed for Artificial Intelligence For Everyone Course</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Core App JS -->
+    <script src="app.js"></script>
+</body>
+</html>

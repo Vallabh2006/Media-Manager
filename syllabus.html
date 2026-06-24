@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syllabus | AI for Everyone Resource Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <!-- Toast Notifications Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <div class="app-container">
+        
+        <!-- Header -->
+        <header class="main-header" id="mainHeader">
+            <div class="logos-container">
+                <div class="logo-item" title="CVM University">
+                    <img src="logo_cvmu.png" alt="CVM University Logo">
+                </div>
+                <div class="logo-divider"></div>
+                <div class="logo-item" title="G H Patel College of Engineering & Technology">
+                    <img src="logo_gcet.png" alt="GCET Logo">
+                </div>
+                <div class="logo-item" title="Madhuben & Bhanubhai Patel Institute of Technology">
+                    <img src="logo_mbit.png" alt="MBIT Logo">
+                </div>
+                <div class="logo-item" title="A D Patel Institute of Technology">
+                    <img src="logo_adit.png" alt="ADIT Logo">
+                </div>
+            </div>
+            
+            <nav class="main-nav" id="mainNav">
+                <a onclick="showView('landing')" class="nav-link">Home</a>
+                <a onclick="showView('syllabus')" class="nav-link">Syllabus</a>
+                <a onclick="showView('features')" class="nav-link">Features</a>
+                <a onclick="showView('contact')" class="nav-link">Contact</a>
+            </nav>
+
+            <div class="header-buttons" id="headerButtons">
+                <button onclick="showView('login')" class="btn btn-outline">Login</button>
+                <button onclick="showView('signup')" class="btn btn-primary">Sign Up</button>
+            </div>
+        </header>
+
+        <!-- ================= SYLLABUS VIEW ================= -->
+        <main class="view-section" id="view-syllabus">
+            <section class="section" id="about">
+                <div class="section-header">
+                    <span class="hero-badge" style="margin-bottom: 1rem;">Course Curriculum</span>
+                    <h2 class="section-title">Syllabus</h2>
+                    <p class="section-subtitle">Explore the key educational units covered under the AI for Everyone curriculum.</p>
+                </div>
+                <div class="syllabus-grid">
+                    <!-- Unit 1 -->
+                    <div class="syllabus-card" onclick="handleSyllabusClick('unit-1')">
+                        <div class="syllabus-icon">
+                            <i data-lucide="cpu"></i>
+                        </div>
+                        <h3 class="syllabus-title">Artificial Intelligence Fundamentals</h3>
+                        <p class="syllabus-desc">Understand basic AI terminology, history, limitations, and potential applications shaping modern industry and society.</p>
+                        <ul class="syllabus-list">
+                            <li><i data-lucide="check-circle"></i> AI definition & timelines</li>
+                            <li><i data-lucide="check-circle"></i> Weak vs Strong AI</li>
+                            <li><i data-lucide="check-circle"></i> Turing Test & Algorithms</li>
+                        </ul>
+                    </div>
+                    <!-- Unit 2 -->
+                    <div class="syllabus-card" onclick="handleSyllabusClick('unit-2')">
+                        <div class="syllabus-icon">
+                            <i data-lucide="brain-circuit"></i>
+                        </div>
+                        <h3 class="syllabus-title">Machine Learning Basics</h3>
+                        <p class="syllabus-desc">Introduction to data training, supervised and unsupervised learning, simple model training, and basic neural networks.</p>
+                        <ul class="syllabus-list">
+                            <li><i data-lucide="check-circle"></i> Supervised learning models</li>
+                            <li><i data-lucide="check-circle"></i> Unsupervised clustering</li>
+                            <li><i data-lucide="check-circle"></i> Neural Network structure</li>
+                        </ul>
+                    </div>
+                    <!-- Unit 3 -->
+                    <div class="syllabus-card" onclick="handleSyllabusClick('unit-3')">
+                        <div class="syllabus-icon">
+                            <i data-lucide="sparkles"></i>
+                        </div>
+                        <h3 class="syllabus-title">Generative AI & LLMs</h3>
+                        <p class="syllabus-desc">Deep-dive into modern Large Language Models, Generative Adversarial Networks, and text-to-image foundation models.</p>
+                        <ul class="syllabus-list">
+                            <li><i data-lucide="check-circle"></i> Transformer Architecture</li>
+                            <li><i data-lucide="check-circle"></i> Text & image generation</li>
+                            <li><i data-lucide="check-circle"></i> Creative AI applications</li>
+                        </ul>
+                    </div>
+                    <!-- Unit 4 -->
+                    <div class="syllabus-card" onclick="handleSyllabusClick('unit-4')">
+                        <div class="syllabus-icon">
+                            <i data-lucide="terminal"></i>
+                        </div>
+                        <h3 class="syllabus-title">Prompt Engineering</h3>
+                        <p class="syllabus-desc">Mastering interactive strategies for Large Language Models. Zero-shot, few-shot, chain-of-thought prompting.</p>
+                        <ul class="syllabus-list">
+                            <li><i data-lucide="check-circle"></i> Few-shot examples</li>
+                            <li><i data-lucide="check-circle"></i> Role prompting styles</li>
+                            <li><i data-lucide="check-circle"></i> Chain-of-Thought flows</li>
+                        </ul>
+                    </div>
+                    <!-- Unit 5 -->
+                    <div class="syllabus-card" onclick="handleSyllabusClick('unit-5')">
+                        <div class="syllabus-icon">
+                            <i data-lucide="activity"></i>
+                        </div>
+                        <h3 class="syllabus-title">AI Productivity Tools</h3>
+                        <p class="syllabus-desc">Practical usage of AI companions, search systems, summarization, and automation utilities for daily workflow.</p>
+                        <ul class="syllabus-list">
+                            <li><i data-lucide="check-circle"></i> Document summaries</li>
+                            <li><i data-lucide="check-circle"></i> Code assistants (Copilot)</li>
+                            <li><i data-lucide="check-circle"></i> Information synthesis</li>
+                        </ul>
+                    </div>
+                    <!-- Unit 6 -->
+                    <div class="syllabus-card" onclick="handleSyllabusClick('unit-6')">
+                        <div class="syllabus-icon">
+                            <i data-lucide="shield-check"></i>
+                        </div>
+                        <h3 class="syllabus-title">Ethics & Responsible AI</h3>
+                        <p class="syllabus-desc">Addressing bias in models, data privacy constraints, copyright conflicts, and building ethical guidelines for AI creation.</p>
+                        <ul class="syllabus-list">
+                            <li><i data-lucide="check-circle"></i> Bias mitigation & fairness</li>
+                            <li><i data-lucide="check-circle"></i> Data sovereignty laws</li>
+                            <li><i data-lucide="check-circle"></i> Academic integrity guidelines</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Global Footer -->
+        <footer class="main-footer" id="mainFooter">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3><i data-lucide="shield"></i> CVM University</h3>
+                    <p>Centralized AI learning resource gateway for GCET, MBIT, and ADIT engineering institutes.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a onclick="showView('syllabus')" style="cursor: pointer;">Syllabus</a></li>
+                        <li><a onclick="showView('features')" style="cursor: pointer;">Features</a></li>
+                        <li><a onclick="showView('contact')" style="cursor: pointer;">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="mailto:support@cvmu.edu.in">support@cvmu.edu.in</a></li>
+                        <li><a href="#">Security policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CVM University. All rights reserved.</p>
+                <p>Designed for Artificial Intelligence For Everyone Course</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Core App JS -->
+    <script src="app.js"></script>
+</body>
+</html>

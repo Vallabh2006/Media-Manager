@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | AI for Everyone Resource Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <!-- Toast Notifications Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <div class="app-container">
+        
+        <!-- Header -->
+        <header class="main-header" id="mainHeader">
+            <div class="logos-container">
+                <div class="logo-item" title="CVM University">
+                    <img src="logo_cvmu.png" alt="CVM University Logo">
+                </div>
+                <div class="logo-divider"></div>
+                <div class="logo-item" title="G H Patel College of Engineering & Technology">
+                    <img src="logo_gcet.png" alt="GCET Logo">
+                </div>
+                <div class="logo-item" title="Madhuben & Bhanubhai Patel Institute of Technology">
+                    <img src="logo_mbit.png" alt="MBIT Logo">
+                </div>
+                <div class="logo-item" title="A D Patel Institute of Technology">
+                    <img src="logo_adit.png" alt="ADIT Logo">
+                </div>
+            </div>
+            
+            <nav class="main-nav" id="mainNav">
+                <a onclick="showView('landing')" class="nav-link">Home</a>
+                <a onclick="showView('syllabus')" class="nav-link">Syllabus</a>
+                <a onclick="showView('features')" class="nav-link">Features</a>
+                <a onclick="showView('contact')" class="nav-link">Contact</a>
+            </nav>
+
+            <div class="header-buttons" id="headerButtons">
+                <button onclick="showView('login')" class="btn btn-outline">Login</button>
+                <button onclick="showView('signup')" class="btn btn-primary">Sign Up</button>
+            </div>
+        </header>
+
+        <!-- ================= CONTACT VIEW ================= -->
+        <main class="view-section" id="view-contact">
+            <section class="section">
+                <div class="section-header">
+                    <span class="hero-badge" style="margin-bottom: 1rem;">Help & Support</span>
+                    <h2 class="section-title">Contact Us</h2>
+                    <p class="section-subtitle">Have questions or need support? Reach out to the CVM University team.</p>
+                </div>
+                
+                <div class="contact-wrapper" style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 3rem; background-color: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 3rem; box-shadow: var(--shadow-sm);">
+                    <!-- Contact Info -->
+                    <div class="contact-info-panel" style="display: flex; flex-direction: column; gap: 2rem;">
+                        <div>
+                            <h3 style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--text-dark); margin-bottom: 1rem;">Office Address</h3>
+                            <p style="color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem;">
+                                CVM University Campus,<br>
+                                Near Shastri Maidan, Vallabh Vidyanagar,<br>
+                                Gujarat, India - 388120
+                            </p>
+                        </div>
+                        <div>
+                            <h3 style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--text-dark); margin-bottom: 1rem;">Email Support</h3>
+                            <p style="color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem;">
+                                <a href="mailto:support@cvmu.edu.in" style="color: var(--primary); font-weight: 600; text-decoration: none;">support@cvmu.edu.in</a>
+                            </p>
+                        </div>
+                        <div>
+                            <h3 style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--text-dark); margin-bottom: 1rem;">Associated Colleges</h3>
+                            <ul style="color: var(--text-secondary); list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.95rem;">
+                                <li><i data-lucide="check" style="width: 16px; height: 16px; color: var(--primary); vertical-align: middle; margin-right: 0.5rem;"></i> GCET Engineering College</li>
+                                <li><i data-lucide="check" style="width: 16px; height: 16px; color: var(--primary); vertical-align: middle; margin-right: 0.5rem;"></i> MBIT Institute of Technology</li>
+                                <li><i data-lucide="check" style="width: 16px; height: 16px; color: var(--primary); vertical-align: middle; margin-right: 0.5rem;"></i> ADIT Institute of Technology</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Form -->
+                    <form id="contactForm" onsubmit="event.preventDefault(); showToast('Your message has been sent successfully!', 'success'); this.reset();" style="display: flex; flex-direction: column; gap: 1.25rem;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label class="form-label">Full Name</label>
+                                <input type="text" class="form-control" placeholder="John Doe" required>
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" class="form-control" placeholder="john@example.com" required>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label class="form-label">Subject</label>
+                            <input type="text" class="form-control" placeholder="Inquiry about portal resources" required>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label class="form-label">Message</label>
+                            <textarea class="form-control" rows="5" placeholder="Write your message here..." style="resize: vertical; font-family: inherit;" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="padding: 0.75rem 2rem; align-self: flex-start; margin-top: 0.5rem; border: none; font-weight: 600;">
+                            Send Message <i data-lucide="send" style="width: 16px; height: 16px; margin-left: 0.5rem;"></i>
+                        </button>
+                    </form>
+                </div>
+            </section>
+        </main>
+
+        <!-- Global Footer -->
+        <footer class="main-footer" id="mainFooter">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3><i data-lucide="shield"></i> CVM University</h3>
+                    <p>Centralized AI learning resource gateway for GCET, MBIT, and ADIT engineering institutes.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a onclick="showView('syllabus')" style="cursor: pointer;">Syllabus</a></li>
+                        <li><a onclick="showView('features')" style="cursor: pointer;">Features</a></li>
+                        <li><a onclick="showView('contact')" style="cursor: pointer;">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="mailto:support@cvmu.edu.in">support@cvmu.edu.in</a></li>
+                        <li><a href="#">Security policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CVM University. All rights reserved.</p>
+                <p>Designed for Artificial Intelligence For Everyone Course</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Core App JS -->
+    <script src="app.js"></script>
+</body>
+</html>

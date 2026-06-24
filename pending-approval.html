@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pending Approval | AI for Everyone Resource Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <!-- Toast Notifications Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <div class="app-container">
+        
+        <!-- Header -->
+        <header class="main-header" id="mainHeader">
+            <div class="logos-container">
+                <div class="logo-item" title="CVM University">
+                    <img src="logo_cvmu.png" alt="CVM University Logo">
+                </div>
+                <div class="logo-divider"></div>
+                <div class="logo-item" title="G H Patel College of Engineering & Technology">
+                    <img src="logo_gcet.png" alt="GCET Logo">
+                </div>
+                <div class="logo-item" title="Madhuben & Bhanubhai Patel Institute of Technology">
+                    <img src="logo_mbit.png" alt="MBIT Logo">
+                </div>
+                <div class="logo-item" title="A D Patel Institute of Technology">
+                    <img src="logo_adit.png" alt="ADIT Logo">
+                </div>
+            </div>
+            
+            <nav class="main-nav" id="mainNav">
+                <a onclick="showView('landing')" class="nav-link">Home</a>
+                <a onclick="showView('syllabus')" class="nav-link">Syllabus</a>
+                <a onclick="showView('features')" class="nav-link">Features</a>
+                <a onclick="showView('contact')" class="nav-link">Contact</a>
+            </nav>
+
+            <div class="header-buttons" id="headerButtons">
+                <button onclick="showView('login')" class="btn btn-outline">Login</button>
+                <button onclick="showView('signup')" class="btn btn-primary">Sign Up</button>
+            </div>
+        </header>
+
+        <!-- ================= WORKFLOW PENDING APPROVAL VIEW ================= -->
+        <main class="view-section" id="view-pending-approval">
+            <div class="auth-wrapper">
+                <div class="auth-card" style="max-width: 500px;">
+                    <div class="pending-review-container">
+                        <div class="pending-review-icon">
+                            <i data-lucide="clock" style="width: 36px; height: 36px;"></i>
+                        </div>
+                        <h2 class="pending-review-title">Approval Pending</h2>
+                        <div class="pending-review-text">
+                            "Your application has been submitted for administrator review."
+                            <p style="margin-top: 1rem; font-size: 0.875rem; line-height: 1.6;">
+                                Faculty dashboard capabilities are disabled until an administrator authorizes your CVM University credentials.
+                            </p>
+                        </div>
+                        
+                        <button onclick="logout()" class="btn btn-outline" style="width: 100%;">
+                            <i data-lucide="log-out"></i> Log Out
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <!-- Core App JS -->
+    <script src="app.js"></script>
+</body>
+</html>
