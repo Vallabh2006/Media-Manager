@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource Library</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="stylesheet" href="../static/css/theme/light.css" id="theme-var">
+    <link rel="stylesheet" href="../static/css/accent/black.css" id="accent-var">
+    <link rel="stylesheet" href="../static/css/font/system.css" id="font-var">
+
+</head>
+<body>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="../media/logo_cvmu.png" alt="CVM University Logo" class="sidebar-logo">
+            <button class="sidebar-close" onclick="closeSidebar()" aria-label="Close menu">
+                <i data-lucide="x"></i>
+            </button>
+        </div>
+
+        <div class="stack">
+            <button class="btn btn-outline btn-block" onclick="showToast('Join Library — coming soon')">Join Library</button>
+            <button class="btn btn-primary btn-block" onclick="showToast('Create Library — coming soon')">Create Library</button>
+        </div>
+
+        <p class="sidebar-meta">You're currently in <strong>3</strong> Libraries</p>
+
+        <div class="stack">
+            <p class="section-label">Customize</p>
+            <button class="btn btn-outline btn-block" onclick="switchTheme()">
+                <i data-lucide="moon"></i> Switch Theme
+            </button>
+            <button class="btn btn-outline btn-block" onclick="switchAccent()">
+                <i data-lucide="palette"></i> Switch Accent
+            </button>
+            <button class="btn btn-outline btn-block" onclick="switchFont()">
+                <i data-lucide="type"></i> Switch Font
+            </button>
+        </div>
+
+        <div class="stack">
+            <p class="section-label">Libraries you're in</p>
+            <ul class="library-list">
+                <li>
+                    <img src="../media/logo_gcet.png" alt="GCET">
+                    <span>GCET Library</span>
+                </li>
+                <li>
+                    <img src="../media/logo_adit.png" alt="ADIT">
+                    <span>ADIT Library</span>
+                </li>
+                <li>
+                    <img src="../media/logo_mbit.png" alt="MBIT">
+                    <span>MBIT Library</span>
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+    <div class="app-container" id="appContainer">
+
+        <header id="mainHeader">
+            <nav class="main-nav" id="mainNav">
+                <div class="nav-left">
+                    <button class="sidebar-toggle" onclick="openSidebar()" aria-label="Open menu">
+                        <i data-lucide="menu"></i>
+                    </button>
+                    <button onclick="showView('index.php')">Home</button>
+                    <button onclick="showView('library.php')">Library</button>
+                    <button onclick="showView('contacts.php')">Contact</button>
+                </div>
+
+                <button onclick="showView('login.html')" class="nav-signin">Sign in</button>
+            </nav>
+        </header>
+
+
+        
+
+
+
+
+
+
+        <main class="view-section" id="view-signup">
+            <div class="auth-wrapper">
+                <div class="auth-card">
+                    <div class="auth-logo">
+                        <i data-lucide="user-plus" style="width: 48px; height: 48px; color: var(--primary);"></i>
+                        <h2 class="auth-title">Create Account</h2>
+                        <p class="auth-subtitle">Register for university-wide AI portal access</p>
+                    </div>
+
+                    <form id="signupForm">
+                        <div class="form-signup-single-step">
+
+                            <h3 style="font-size: 1rem; font-weight: 600; margin-bottom: 1rem; color: var(--text-dark);">Choose Your Role</h3>
+                            <div class="role-grid-2" style="margin-bottom: 1.25rem;">
+                                <button type="button" class="role-btn active" id="signup-role-student">
+                                    <i data-lucide="graduation-cap"></i>
+                                    <span>Student</span>
+                                </button>
+                                <button type="button" class="role-btn" id="signup-role-faculty">
+                                    <i data-lucide="users"></i>
+                                    <span>Faculty Member</span>
+                                </button>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="signupCollege">College affiliation</label>
+                                <select id="signupCollege" class="form-control" style="background-image: none;" required>
+                                    <option value="" disabled selected>Select Your College</option>
+                                    <option value="GCET">GCET (G H Patel College of Eng. & Tech.)</option>
+                                    <option value="MBIT">MBIT (Madhuben & Bhanubhai Patel Inst. of Tech.)</option>
+                                    <option value="ADIT">ADIT (A D Patel Institute of Technology)</option>
+                                </select>
+                                <div class="validation-msg" id="val-signup-college"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="signupEmail">College Email Address</label>
+                                <div class="email-otp-row" style="display: flex; gap: 0.5rem; align-items: stretch;">
+                                    <div class="input-icon-wrapper" style="flex: 1; margin-bottom: 0;">
+                                        <i data-lucide="mail"></i>
+                                        <input type="email" id="signupEmail" class="form-control" placeholder="e.g. name@gcet.ac.in" required>
+                                    </div>
+                                    <button type="button" id="btnSendOTP" onclick="" class="btn btn-secondary" style="white-space: nowrap; padding: 0.5rem 1rem; font-size: 0.9rem; display: none;">Send OTP</button>
+                                </div>
+                                <div style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.35rem; line-height: 1.4;">
+                                    Students: <b>@gcet.ac.in</b>, <b>@mbit.edu.in</b>, or <b>@adit.ac.in</b> <br>
+                                    Faculty: <b>@cvmu.edu.in</b>
+                                </div>
+                                <div class="validation-msg" id="val-signup-email"></div>
+                            </div>
+
+                            <div class="form-group" id="signupOTPContainer" style="display: none;">
+                                <label class="form-label" for="signupOTP">Enter OTP Code</label>
+                                <div class="input-icon-wrapper">
+                                    <i data-lucide="shield-check"></i>
+                                    <input type="text" id="signupOTP" class="form-control" placeholder="Enter 6-digit OTP code" required>
+                                </div>
+                                <div class="validation-msg" id="val-signup-otp"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="signupUsername">Username</label>
+                                <div class="input-icon-wrapper">
+                                    <i data-lucide="user"></i>
+                                    <input type="text" id="signupUsername" class="form-control" placeholder="Choose a username" required>
+                                </div>
+                                <div class="validation-msg" id="val-signup-username"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="signupPassword">Password</label>
+                                <div class="input-icon-wrapper">
+                                    <i data-lucide="key"></i>
+                                    <input type="password" id="signupPassword" class="form-control" placeholder="••••••••" required>
+                                </div>
+                                <div class="validation-msg" id="val-signup-password"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="signupConfirmPassword">Confirm Password</label>
+                                <div class="input-icon-wrapper">
+                                    <i data-lucide="key"></i>
+                                    <input type="password" id="signupConfirmPassword" class="form-control" placeholder="••••••••" required>
+                                </div>
+                                <div class="validation-msg" id="val-signup-confirm"></div>
+                            </div>
+
+                            <button type="button" onclick="" class="btn btn-primary" style="width: 100%; margin-top: 1.5rem; padding: 0.85rem; font-size: 1rem; font-weight: 600;">
+                                Finish & Create Account <i data-lucide="check"></i>
+                            </button>
+                        </div>
+                    </form>
+
+                    <div style="margin-top: 1.5rem; text-align: center; display: flex; flex-direction: column; gap: 0.75rem;">
+                        <span style="font-size: 0.875rem; color: var(--text-secondary);">
+                            Already have an account? <a onclick="showView('login.html')" style="color: var(--primary); font-weight: 600; cursor: pointer;">Login</a>
+                        </span>
+                        <a onclick="showView('index.php')" style="font-size: 0.85rem; color: var(--text-secondary); display: flex; align-items: center; justify-content: center; gap: 0.25rem; cursor: pointer;">
+                            <i data-lucide="arrow-left" style="width: 14px; height: 14px;"></i> Back to Home
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <footer class="main-footer" id="mainFooter">
+            <div class="footer-grid">
+
+                <div class="footer-col footer-about">
+                    <h4>About</h4>
+                    <p>A centralized resource portal built for the "Artificial Intelligence for Everyone" course at CVM University, serving GCET, ADIT, and MBIT students.</p>
+                </div>
+
+                <div class="footer-col footer-links">
+                    <h4>Contacts</h4>
+                    <ul class="plain-list">
+                        <li><a href="mailto:support@cvmu.edu.in">support@cvmu.edu.in</a></li>
+                        <li><a href="#">Faculty of Technology, CVM University</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col footer-legal">
+                    <h4>Legal</h4>
+                    <ul class="plain-list">
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Security Policy</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 CVM University. All rights reserved.</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <script src="../static/js/app.js"></script>
+    <script>
+
+        if (window.lucide) lucide.createIcons();
+
+        function openSidebar() {
+            document.getElementById('sidebar').classList.add('open');
+            document.getElementById('sidebarOverlay').classList.add('visible');
+            document.getElementById('appContainer').classList.add('blurred');
+            document.body.classList.add('no-scroll');
+        }
+        function closeSidebar() {
+            document.getElementById('sidebar').classList.remove('open');
+            document.getElementById('sidebarOverlay').classList.remove('visible');
+            document.getElementById('appContainer').classList.remove('blurred');
+            document.body.classList.remove('no-scroll');
+        }
+
+        function showToast(message) {
+            if (window.toast) { window.toast(message); return; }
+            console.log('[placeholder]', message);
+        }
+    </script>
+</body>
+</html>

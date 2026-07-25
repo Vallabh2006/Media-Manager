@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource Library</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="stylesheet" href="../static/css/theme/light.css" id="theme-var">
+    <link rel="stylesheet" href="../static/css/accent/black.css" id="accent-var">
+    <link rel="stylesheet" href="../static/css/font/system.css" id="font-var">
+
+</head>
+<body>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="../media/logo_cvmu.png" alt="CVM University Logo" class="sidebar-logo">
+            <button class="sidebar-close" onclick="closeSidebar()" aria-label="Close menu">
+                <i data-lucide="x"></i>
+            </button>
+        </div>
+
+        <div class="stack">
+            <button class="btn btn-outline btn-block" onclick="showToast('Join Library — coming soon')">Join Library</button>
+            <button class="btn btn-primary btn-block" onclick="showToast('Create Library — coming soon')">Create Library</button>
+        </div>
+
+        <p class="sidebar-meta">You're currently in <strong>3</strong> Libraries</p>
+
+        <div class="stack">
+            <p class="section-label">Customize</p>
+            <button class="btn btn-outline btn-block" onclick="switchTheme()">
+                <i data-lucide="moon"></i> Switch Theme
+            </button>
+            <button class="btn btn-outline btn-block" onclick="switchAccent()">
+                <i data-lucide="palette"></i> Switch Accent
+            </button>
+            <button class="btn btn-outline btn-block" onclick="switchFont()">
+                <i data-lucide="type"></i> Switch Font
+            </button>
+        </div>
+
+        <div class="stack">
+            <p class="section-label">Libraries you're in</p>
+            <ul class="library-list">
+                <li>
+                    <img src="../media/logo_gcet.png" alt="GCET">
+                    <span>GCET Library</span>
+                </li>
+                <li>
+                    <img src="../media/logo_adit.png" alt="ADIT">
+                    <span>ADIT Library</span>
+                </li>
+                <li>
+                    <img src="../media/logo_mbit.png" alt="MBIT">
+                    <span>MBIT Library</span>
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+    <div class="app-container" id="appContainer">
+
+        <header id="mainHeader">
+            <nav class="main-nav" id="mainNav">
+                <div class="nav-left">
+                    <button class="sidebar-toggle" onclick="openSidebar()" aria-label="Open menu">
+                        <i data-lucide="menu"></i>
+                    </button>
+                    <button onclick="showView('index.php')">Home</button>
+                    <button onclick="showView('library.php')">Library</button>
+                    <button onclick="showView('contacts.php')">Contact</button>
+                </div>
+
+                <button onclick="showView('signup.html')" class="nav-signin">Sign in</button>
+            </nav>
+        </header>
+
+
+
+
+
+
+
+
+
+
+
+        <main class="view-section" id="view-login">
+            <div class="auth-wrapper">
+                <div class="auth-card">
+                    <div class="auth-logo">
+                        <i data-lucide="shield" style="width: 48px; height: 48px;"></i>
+                        <h2 class="auth-title">Welcome Back</h2>
+                        <p class="auth-subtitle">Sign in to access your subject resource dashboard</p>
+                    </div>
+
+                    <div class="role-grid-2" style="margin-bottom: 1.75rem;">
+                        <button type="button" class="role-btn active" id="login-role-student" onclick="setLoginRole('student')">
+                            <i data-lucide="graduation-cap"></i>
+                            <span>Student</span>
+                        </button>
+                        <button type="button" class="role-btn" id="login-role-faculty" onclick="setLoginRole('faculty')">
+                            <i data-lucide="users"></i>
+                            <span>Faculty</span>
+                        </button>
+                    </div>
+
+                    <form id="loginForm" onsubmit="handleLogin(event)">
+                        <div class="form-group">
+                            <label class="form-label">Username / Email</label>
+                            <div class="input-icon-wrapper">
+                                <i data-lucide="user"></i>
+                                <input type="text" id="loginUsername" class="form-control" placeholder="Enter username" required>
+                            </div>
+                            <div class="validation-msg" id="val-login-user"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Password</label>
+                            <div class="input-icon-wrapper">
+                                <i data-lucide="key"></i>
+                                <input type="password" id="loginPassword" class="form-control" placeholder="••••••••" required>
+                            </div>
+                            <div class="validation-msg" id="val-login-pass"></div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem; padding: 0.8rem;">Login</button>
+                    </form>
+
+                    <div style="margin-top: 1.5rem; text-align: center; display: flex; flex-direction: column; gap: 0.75rem;">
+                        <span style="font-size: 0.875rem; color: var(--text-secondary);">
+                            Don't have an account? <a onclick="showView('signin.html')" style="color: var(--primary); font-weight: 600; cursor: pointer;">Sign Up</a>
+                        </span>
+                        <a onclick="showView('landing')" style="font-size: 0.85rem; color: var(--text-secondary); display: flex; align-items: center; justify-content: center; gap: 0.25rem; cursor: pointer;">
+                            <i data-lucide="arrow-left" style="width: 14px; height: 14px;"></i> Back to Home
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+
+
+
+
+
+
+
+        <footer class="main-footer" id="mainFooter">
+            <div class="footer-grid">
+
+                <div class="footer-col footer-about">
+                    <h4>About</h4>
+                    <p>A centralized resource portal built for the "Artificial Intelligence for Everyone" course at CVM University, serving GCET, ADIT, and MBIT students.</p>
+                </div>
+
+                <div class="footer-col footer-links">
+                    <h4>Contacts</h4>
+                    <ul class="plain-list">
+                        <li><a href="mailto:support@cvmu.edu.in">support@cvmu.edu.in</a></li>
+                        <li><a href="#">Faculty of Technology, CVM University</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col footer-legal">
+                    <h4>Legal</h4>
+                    <ul class="plain-list">
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Security Policy</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 CVM University. All rights reserved.</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <script src="../static/js/app.js"></script>
+    <script>
+
+        if (window.lucide) lucide.createIcons();
+
+        function openSidebar() {
+            document.getElementById('sidebar').classList.add('open');
+            document.getElementById('sidebarOverlay').classList.add('visible');
+            document.getElementById('appContainer').classList.add('blurred');
+            document.body.classList.add('no-scroll');
+        }
+        function closeSidebar() {
+            document.getElementById('sidebar').classList.remove('open');
+            document.getElementById('sidebarOverlay').classList.remove('visible');
+            document.getElementById('appContainer').classList.remove('blurred');
+            document.body.classList.remove('no-scroll');
+        }
+
+        function showToast(message) {
+            if (window.toast) { window.toast(message); return; }
+            console.log('[placeholder]', message);
+        }
+    </script>
+</body>
+</html>

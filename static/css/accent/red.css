@@ -1,0 +1,18 @@
+:root {
+  --violet-dim:    #ca0b0b;
+  --violet-mid:    #8f0808;
+  --violet-bright: #d40404;
+  --violet-glow:   #d62424;
+
+  --blue-dim:      #9d0101;
+  --blue-mid:      #750606;
+  --blue-accent:   #b50505;
+  --blue-light:    #c61010;
+
+  --glow-violet: 0 0 20px rgba(212, 4, 4, .3);
+
+  --text-primary:   #ff0000;
+  --text-secondary: #c63535;
+  --text-muted:     #9e1515;
+  --text-inverse:   #ffe5e5;
+}

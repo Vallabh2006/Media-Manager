@@ -1,52 +1,107 @@
+<?php
+require_once __DIR__ . "/../includes/css.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us | AI for Everyone Resource Portal</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Resource Library</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="stylesheet" href="../static/css/theme/dark.css" id="theme-var">
+    <link rel="stylesheet" href="../static/css/accent/purple.css" id="accent-var">
+    <link rel="stylesheet" href="../static/css/font/system.css" id="font-var">
+
+    <script src="../static/js/theme.js"></script>
+
 </head>
 <body>
 
-    <!-- Toast Notifications Container -->
     <div class="toast-container" id="toastContainer"></div>
 
-    <div class="app-container">
-        
-        <!-- Header -->
-        <header class="main-header" id="mainHeader">
-            <div class="logos-container">
-                <div class="logo-item" title="CVM University">
-                    <img src="logo_cvmu.png" alt="CVM University Logo">
-                </div>
-                <div class="logo-divider"></div>
-                <div class="logo-item" title="G H Patel College of Engineering & Technology">
-                    <img src="logo_gcet.png" alt="GCET Logo">
-                </div>
-                <div class="logo-item" title="Madhuben & Bhanubhai Patel Institute of Technology">
-                    <img src="logo_mbit.png" alt="MBIT Logo">
-                </div>
-                <div class="logo-item" title="A D Patel Institute of Technology">
-                    <img src="logo_adit.png" alt="ADIT Logo">
-                </div>
-            </div>
-            
-            <nav class="main-nav" id="mainNav">
-                <a onclick="showView('landing')" class="nav-link">Home</a>
-                <a onclick="showView('syllabus')" class="nav-link">Syllabus</a>
-                <a onclick="showView('features')" class="nav-link">Features</a>
-                <a onclick="showView('contact')" class="nav-link">Contact</a>
-            </nav>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="../media/logo_cvmu.png" alt="CVM University Logo" class="sidebar-logo">
+            <button class="sidebar-close" onclick="closeSidebar()" aria-label="Close menu">
+                <i data-lucide="x"></i>
+            </button>
+        </div>
 
-            <div class="header-buttons" id="headerButtons">
-                <button onclick="showView('login')" class="btn btn-outline">Login</button>
-                <button onclick="showView('signup')" class="btn btn-primary">Sign Up</button>
-            </div>
+        <div class="stack">
+            <button class="btn btn-outline btn-block" onclick="showToast('Join Library — coming soon')">Join Library</button>
+            <button class="btn btn-primary btn-block" onclick="showToast('Create Library — coming soon')">Create Library</button>
+        </div>
+
+        <p class="sidebar-meta">You're currently in <strong>3</strong> Libraries</p>
+
+        <div class="stack">
+            <p class="section-label">Customize</p>
+            <button class="btn btn-outline btn-block" onclick="switchTheme()">
+                <i data-lucide="moon"></i> Switch Theme
+            </button>
+            <button class="btn btn-outline btn-block" onclick="switchAccent()">
+                <i data-lucide="palette"></i> Switch Accent
+            </button>
+            <button class="btn btn-outline btn-block" onclick="switchFont()">
+                <i data-lucide="type"></i> Switch Font
+            </button>
+        </div>
+
+        <div class="stack">
+            <p class="section-label">Libraries you're in</p>
+            <ul class="library-list">
+                <li>
+                    <img src="../media/logo_gcet.png" alt="GCET">
+                    <span>GCET Library</span>
+                </li>
+                <li>
+                    <img src="../media/logo_adit.png" alt="ADIT">
+                    <span>ADIT Library</span>
+                </li>
+                <li>
+                    <img src="../media/logo_mbit.png" alt="MBIT">
+                    <span>MBIT Library</span>
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+    <div class="app-container" id="appContainer">
+
+        <header id="mainHeader">
+            <nav class="main-nav" id="mainNav">
+                <div class="nav-left">
+                    <button class="sidebar-toggle" onclick="openSidebar()" aria-label="Open menu">
+                        <i data-lucide="menu"></i>
+                    </button>
+                    <button onclick="showView('index.php')">Home</button>
+                    <button onclick="showView('library.php')">Library</button>
+                    <button onclick="showView('contacts.php')">Contact</button>
+                </div>
+
+                <button onclick="showView('login.html')" class="nav-signin">Sign in</button>
+            </nav>
         </header>
 
-        <!-- ================= CONTACT VIEW ================= -->
-        <main class="view-section" id="view-contact">
+
+
+
+
+
+
+
+        <main class="view-section active" id="view-landing">
+
             <section class="section">
                 <div class="section-header">
                     <span class="hero-badge" style="margin-bottom: 1rem;">Help & Support</span>
@@ -55,7 +110,7 @@
                 </div>
                 
                 <div class="contact-wrapper" style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 3rem; background-color: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 3rem; box-shadow: var(--shadow-sm);">
-                    <!-- Contact Info -->
+
                     <div class="contact-info-panel" style="display: flex; flex-direction: column; gap: 2rem;">
                         <div>
                             <h3 style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--text-dark); margin-bottom: 1rem;">Office Address</h3>
@@ -81,7 +136,6 @@
                         </div>
                     </div>
                     
-                    <!-- Contact Form -->
                     <form id="contactForm" onsubmit="event.preventDefault(); showToast('Your message has been sent successfully!', 'success'); this.reset();" style="display: flex; flex-direction: column; gap: 1.25rem;">
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
                             <div class="form-group" style="margin-bottom: 0;">
@@ -109,38 +163,61 @@
             </section>
         </main>
 
-        <!-- Global Footer -->
         <footer class="main-footer" id="mainFooter">
             <div class="footer-grid">
-                <div class="footer-brand">
-                    <h3><i data-lucide="shield"></i> CVM University</h3>
-                    <p>Centralized AI learning resource gateway for GCET, MBIT, and ADIT engineering institutes.</p>
+
+                <div class="footer-col footer-about">
+                    <h4>About</h4>
+                    <p>A centralized resource portal built for the "Artificial Intelligence for Everyone" course at CVM University, serving GCET, ADIT, and MBIT students.</p>
                 </div>
-                <div class="footer-links">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a onclick="showView('syllabus')" style="cursor: pointer;">Syllabus</a></li>
-                        <li><a onclick="showView('features')" style="cursor: pointer;">Features</a></li>
-                        <li><a onclick="showView('contact')" style="cursor: pointer;">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Support</h4>
-                    <ul>
+
+                <div class="footer-col footer-links">
+                    <h4>Contacts</h4>
+                    <ul class="plain-list">
                         <li><a href="mailto:support@cvmu.edu.in">support@cvmu.edu.in</a></li>
-                        <li><a href="#">Security policy</a></li>
+                        <li><a href="#">Faculty of Technology, CVM University</a></li>
                     </ul>
                 </div>
+
+                <div class="footer-col footer-legal">
+                    <h4>Legal</h4>
+                    <ul class="plain-list">
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Security Policy</a></li>
+                    </ul>
+                </div>
+
             </div>
+
             <div class="footer-bottom">
                 <p>&copy; 2026 CVM University. All rights reserved.</p>
-                <p>Designed for Artificial Intelligence For Everyone Course</p>
             </div>
         </footer>
 
     </div>
 
-    <!-- Core App JS -->
-    <script src="app.js"></script>
+    <script src="../static/js/app.js"></script>
+    <script>
+        if (window.lucide) lucide.createIcons();
+
+        function openSidebar() {
+            document.getElementById('sidebar').classList.add('open');
+            document.getElementById('sidebarOverlay').classList.add('visible');
+            document.getElementById('appContainer').classList.add('blurred');
+            document.body.classList.add('no-scroll');
+        }
+        function closeSidebar() {
+            document.getElementById('sidebar').classList.remove('open');
+            document.getElementById('sidebarOverlay').classList.remove('visible');
+            document.getElementById('appContainer').classList.remove('blurred');
+            document.body.classList.remove('no-scroll');
+        }
+
+        function showToast(message) {
+            if (window.toast) { window.toast(message); return; }
+            console.log('[placeholder]', message);
+        }
+    </script>
 </body>
 </html>

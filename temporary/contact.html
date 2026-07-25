@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | AI for Everyone Resource Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <!-- Toast Notifications Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <div class="app-container">
+        
+        <!-- Header -->
+        <header class="main-header" id="mainHeader">
+            <div class="logos-container">
+                <div class="logo-item" title="CVM University">
+                    <img src="logo_cvmu.png" alt="CVM University Logo">
+                </div>
+                <div class="logo-divider"></div>
+                <div class="logo-item" title="G H Patel College of Engineering & Technology">
+                    <img src="logo_gcet.png" alt="GCET Logo">
+                </div>
+                <div class="logo-item" title="Madhuben & Bhanubhai Patel Institute of Technology">
+                    <img src="logo_mbit.png" alt="MBIT Logo">
+                </div>
+                <div class="logo-item" title="A D Patel Institute of Technology">
+                    <img src="logo_adit.png" alt="ADIT Logo">
+                </div>
+            </div>
+            
+            <nav class="main-nav" id="mainNav">
+                <a onclick="showView('landing')" class="nav-link">Home</a>
+                <a onclick="showView('syllabus')" class="nav-link">Syllabus</a>
+                <a onclick="showView('features')" class="nav-link">Features</a>
+                <a onclick="showView('contact')" class="nav-link">Contact</a>
+            </nav>
+
+            <div class="header-buttons" id="headerButtons">
+                <button onclick="showView('login')" class="btn btn-outline">Login</button>
+                <button onclick="showView('signup')" class="btn btn-primary">Sign Up</button>
+            </div>
+        </header>
+
+
+        <!-- Global Footer -->
+        <footer class="main-footer" id="mainFooter">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3><i data-lucide="shield"></i> CVM University</h3>
+                    <p>Centralized AI learning resource gateway for GCET, MBIT, and ADIT engineering institutes.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a onclick="showView('syllabus')" style="cursor: pointer;">Syllabus</a></li>
+                        <li><a onclick="showView('features')" style="cursor: pointer;">Features</a></li>
+                        <li><a onclick="showView('contact')" style="cursor: pointer;">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="mailto:support@cvmu.edu.in">support@cvmu.edu.in</a></li>
+                        <li><a href="#">Security policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CVM University. All rights reserved.</p>
+                <p>Designed for Artificial Intelligence For Everyone Course</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Core App JS -->
+    <script src="app.js"></script>
+</body>
+</html>

@@ -222,7 +222,6 @@ button, input, select, textarea {
     margin-bottom: 1.5rem;
     max-width: 800px;
     background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
-    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
